@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: smartpark-backend
+    runtime: java
+    rootDir: backend
+    buildCommand: mvn clean package -DskipTests -B
+    startCommand: java -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -jar target/smartpark-backend-1.0.0-SNAPSHOT.jar
+    healthCheckPath: /api/v1/slots
+    autoDeploy: true
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SMARTPARK_JWT_SECRET
+        sync: false
