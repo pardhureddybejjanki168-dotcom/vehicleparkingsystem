@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL 
   ? `${import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, '')}/api/v1`
-  : '/api/v1';
+  : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? '/api/v1'
+    : 'https://smartpark-backend.onrender.com/api/v1';
 
 const api = axios.create({
   baseURL: BASE_URL,
