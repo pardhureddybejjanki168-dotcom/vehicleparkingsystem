@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: smartpark-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/smartpark_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    open-in-view: false
+
+smartpark:
+  jwt:
+    secret: ${SMARTPARK_JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration-ms: 86400000 # 24 hours
+  admin:
+    default-email: ${SMARTPARK_ADMIN_EMAIL:admin@smartpark.edu}
+    default-password: ${SMARTPARK_ADMIN_PASSWORD:Admin@123456}
+    default-name: ${SMARTPARK_ADMIN_NAME:System Administrator}
+    default-id: ${SMARTPARK_ADMIN_ID:ADM-001}
